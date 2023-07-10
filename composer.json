@@ -1,0 +1,20 @@
+{
+  "name": "guiga/ecommerce",
+  "description": "E-commerce feito com php",
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/"
+    },
+    "files": [
+      "app/helpers/constants.php",
+      "app/router/router.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Guilherme Wilker",
+      "email": "wilkerguilherme0@gmail.com"
+    }
+  ],
+  "require": {}
+}

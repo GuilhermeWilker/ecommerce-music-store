@@ -58,6 +58,7 @@ function router()
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
     $routes = getRoutes();
+    $params = [];
 
     $matchedUri = findMatchingRoutesInArray($uri, $routes);
     if (empty($matchedUri)) {
@@ -65,11 +66,13 @@ function router()
 
         $params = extractParamsFromUri($uri, $matchedUri);
         $params = formatParams($uri, $params);
-
-        var_dump($params);
-        exit;
     }
 
-    var_dump($matchedUri);
-    exit;
+    if (!empty($matchedUri)) {
+        loadController($matchedUri, $params);
+
+        return;
+    }
+
+    throw new Exception('Algo deu errado');
 }

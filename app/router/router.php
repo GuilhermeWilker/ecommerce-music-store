@@ -1,11 +1,11 @@
 <?php
 
-function routes(): array
+function getRoutes(): array
 {
     return require 'web.php';
 }
 
-function ifTheUriMatchInArrayRoutes(string $uri, array $routes): array
+function findMatchingRoutesInArray(string $uri, array $routes): array
 {
     if (array_key_exists($uri, $routes)) {
         return [$uri => $routes[$uri]];
@@ -14,7 +14,7 @@ function ifTheUriMatchInArrayRoutes(string $uri, array $routes): array
     return [];
 }
 
-function ifRegularExpressionMatchArrayRoutes(string $uri, array $routes): array
+function findMatchingRoutesWithRegex(string $uri, array $routes): array
 {
     return array_filter(
         $routes,
@@ -27,7 +27,7 @@ function ifRegularExpressionMatchArrayRoutes(string $uri, array $routes): array
     );
 }
 
-function params($uri, $matchedUri)
+function extractParamsFromUri($uri, $matchedUri): array
 {
     if (!empty($matchedUri)) {
         $matchedToGetParams = array_keys($matchedUri)[0];
@@ -57,13 +57,13 @@ function router()
 {
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-    $routes = routes();
+    $routes = getRoutes();
 
-    $matchedUri = ifTheUriMatchInArrayRoutes($uri, $routes);
+    $matchedUri = findMatchingRoutesInArray($uri, $routes);
     if (empty($matchedUri)) {
-        $matchedUri = ifRegularExpressionMatchArrayRoutes($uri, $routes);
+        $matchedUri = findMatchingRoutesWithRegex($uri, $routes);
 
-        $params = params($uri, $matchedUri);
+        $params = extractParamsFromUri($uri, $matchedUri);
         $params = formatParams($uri, $params);
 
         var_dump($params);

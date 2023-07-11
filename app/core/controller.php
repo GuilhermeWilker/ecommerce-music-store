@@ -16,5 +16,5 @@ function loadController($matchedUri, $params)
         throw new Exception("O método {$method} do controller {$controller} não foi encontrado..");
     }
 
-    $controllerInstance->$method($params);
+    return $controllerInstance->$method($params);
 }

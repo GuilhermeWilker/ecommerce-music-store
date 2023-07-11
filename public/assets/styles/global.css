@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 25px;
+}
+
+.navbar__list {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+
+  list-style-type: none;
+}
+
+.navbar__list-item a {
+  text-decoration: none;
+}
+
+.container {
+  padding: 25px 40px;
+}

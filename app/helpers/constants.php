@@ -1,4 +1,6 @@
 <?php
 
-define('TESTE', 'teste constante');
 define('CONTROLLER_PATH', 'app\\controllers\\');
+define('ROOT', dirname(__FILE__, 3));
+define('VIEWS', ROOT.'/app/views/');
+define('ASSETS', ROOT.'/public/assets/');
